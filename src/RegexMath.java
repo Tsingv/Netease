@@ -16,6 +16,10 @@ public class RegexMath {
         Matcher m1 = p1.matcher(src);
         m1.find();
         INFO.add(m1.group(1));          //get the pic url
+        Pattern p2 = Pattern.compile("\\\"playTime\\\":(.*?),");
+        Matcher m2 = p2.matcher(src);
+        m2.find();
+        INFO.add(m2.group(1));
         return INFO;
     }
 }
