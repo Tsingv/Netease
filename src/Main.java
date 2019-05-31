@@ -1,8 +1,6 @@
-import org.farng.mp3.MP3File;
 import org.farng.mp3.TagException;
 
 import java.io.IOException;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws IOException, TagException {
