@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -30,5 +27,32 @@ public class GetMethod {
         }
         return res;
 
+    }
+    public byte[] getpic(String httpurl){
+        byte[] data = null;
+        try {
+            URL url = new URL(httpurl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.connect();
+            if (connection.getResponseCode() == 200) {
+                InputStream is = connection.getInputStream();
+                data = readInputStream(is);
+                connection.disconnect();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+    private byte[] readInputStream(InputStream in) throws IOException {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int len =0;
+        while((len=in.read(buffer))!=-1){
+            out.write(buffer,0,len);
+        }
+        in.close();
+        return out.toByteArray();
     }
 }

@@ -1,6 +1,6 @@
 import org.farng.mp3.TagException;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 
 public class Main {
@@ -21,6 +21,14 @@ public class Main {
          */
         MP3TAG mp = new MP3TAG();
         mp.setInfo(INFO,lyr);
+        File file = new File("/home/clearain/piiiict");
+        if(!file.exists()){
+            file.createNewFile();
+        }
+        FileOutputStream fo = new FileOutputStream(file);
+        fo.write(new GetMethod().getpic("http://p1.music.126.net/6HMHsDBAcwRziVIQTv1LFA==/827932255758680.jpg"));
+        fo.flush();
+        fo.close();
 
     }
 }
