@@ -1,11 +1,16 @@
-import org.farng.mp3.TagException;
+
+import org.jaudiotagger.audio.exceptions.CannotReadException;
+import org.jaudiotagger.audio.exceptions.CannotWriteException;
+import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
+import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
+import org.jaudiotagger.tag.TagException;
 
 import java.io.*;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws IOException, TagException {
-        GetInfo info = new GetInfo("1230600");
+    public static void main(String[] args) throws IOException, TagException, CannotWriteException, ReadOnlyFileException, InvalidAudioFrameException, CannotReadException {
+        GetInfo info = new GetInfo(new Id().getID("/home/clearain/Downloads/sr.idx"));
         List<String> INFO = info.getInfo();
         System.out.println(INFO);
         String lyr = info.getlyric();
@@ -20,15 +25,6 @@ public class Main {
          * THIS IS JUST FOR TEST FUNCTIONS
          */
         MP3TAG mp = new MP3TAG();
-        mp.setInfo(INFO,lyr);
-        File file = new File("/home/clearain/piiiict");
-        if(!file.exists()){
-            file.createNewFile();
-        }
-        FileOutputStream fo = new FileOutputStream(file);
-        fo.write(new GetMethod().getpic("http://p1.music.126.net/6HMHsDBAcwRziVIQTv1LFA==/827932255758680.jpg"));
-        fo.flush();
-        fo.close();
-
+        mp.setInfo(INFO,lyr,new Decode().decode("/home/clearain/Downloads/mm.uc","/home/clearain/sr.mp3"));
     }
 }

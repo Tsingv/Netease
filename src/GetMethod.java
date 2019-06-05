@@ -45,7 +45,7 @@ public class GetMethod {
         }
         return data;
     }
-    private byte[] readInputStream(InputStream in) throws IOException {
+    public byte[] readInputStream(InputStream in) throws IOException {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
         int len =0;
